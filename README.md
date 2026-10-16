@@ -1,58 +1,97 @@
-# Piano Web com ESP32
+# Piano Web ESP32
 
-Projeto Arduino/ESP32 de um piano simples controlado por pagina web. O ESP32 conecta ao Wi-Fi, hospeda uma interface web com teclas virtuais e toca notas musicais em um buzzer piezoeletrico.
+[Português](#português) · [English](#english)
 
-## Recursos
+## Português
 
-- ESP32 como servidor web
-- Buzzer piezoeletrico em pino digital/PWM
-- Teclas virtuais: Do, Re, Mi, Fa, Sol, La, Si e Do agudo
-- Controle pelo mouse/toque na tela
-- Controle pelo teclado do computador: A, S, D, F, G, H, J, K
-- Indicador da nota tocada
-- Botao para parar o som
-- HTML, CSS e JavaScript separados em blocos dentro do arquivo `.ino`
+Projeto acadêmico desenvolvido com Arduino e ESP32: um piano simples controlado pelo navegador, com reprodução de notas em um buzzer piezoelétrico.
 
-## Esquema de ligacao
+O circuito foi **montado e testado fisicamente**. O estudo conecta uma interface web a um dispositivo físico, explorando comunicação por Wi-Fi e controle de som.
 
-```text
-Buzzer positivo (+)  -> GPIO 25 do ESP32
-Buzzer negativo (-)  -> GND do ESP32
-```
+### Funcionamento
 
-Se quiser usar outro pino, altere esta linha no codigo:
+O ESP32 conecta-se à rede Wi-Fi e hospeda uma página com teclas virtuais. Ao interagir com a interface, o usuário envia comandos ao dispositivo, que reproduz a nota no buzzer.
 
-```cpp
-const int BUZZER_PIN = 25;
-```
+- Oito notas: Dó, Ré, Mi, Fá, Sol, Lá, Si e Dó agudo.
+- Controle por clique, toque ou teclado: `A S D F G H J K`.
+- Indicador da nota atual e botão para parar o som.
+- Interface HTML, CSS e JavaScript incorporada ao sketch Arduino.
 
-## Configuracao do Wi-Fi
+### Hardware
 
-No arquivo `PianoWebESP32/PianoWebESP32.ino`, altere:
-
-```cpp
-const char* ssid = "NOME_DA_SUA_REDE";
-const char* password = "SENHA_DA_SUA_REDE";
-```
-
-## Como executar
-
-1. Abra `PianoWebESP32/PianoWebESP32.ino` na Arduino IDE.
-2. Selecione sua placa ESP32 em `Ferramentas > Placa`.
-3. Grave o codigo no ESP32.
-4. Abra o Monitor Serial em `115200` baud.
-5. Aguarde o IP aparecer, por exemplo:
+- Placa ESP32.
+- Buzzer piezoelétrico.
+- Fios para conexão.
+- Cabo USB compatível com a placa.
 
 ```text
-Conectado. Acesse: http://192.168.1.50
+Buzzer positivo (+) → GPIO 25 do ESP32
+Buzzer negativo (-) → GND do ESP32
 ```
 
-6. Abra esse endereco em um navegador conectado a mesma rede Wi-Fi.
-7. Toque nas teclas virtuais ou use as teclas A, S, D, F, G, H, J, K.
+O pino pode ser ajustado em `BUZZER_PIN` no sketch.
 
-## Bibliotecas usadas
+### Como executar
 
-As bibliotecas usadas ja fazem parte do suporte ESP32 para Arduino IDE:
+1. Abra `PianoWebESP32/PianoWebESP32.ino` na Arduino IDE com suporte à sua placa ESP32 instalado.
+2. Configure `ssid` e `password` com os dados da sua rede Wi-Fi.
+3. Selecione a placa e a porta correspondentes e envie o sketch ao ESP32.
+4. Abra o Monitor Serial em **115200 baud**.
+5. Acesse o endereço IP informado usando um navegador na mesma rede.
+6. Use as teclas virtuais ou `A S D F G H J K` para tocar.
 
-- `WiFi.h`
-- `WebServer.h`
+As bibliotecas `WiFi.h` e `WebServer.h` fazem parte do suporte ESP32 para Arduino. Mantenha as credenciais da sua rede fora das versões publicadas do código.
+
+### Tecnologias e limites
+
+ESP32 · Arduino/C++ · Wi-Fi · HTML · CSS · JavaScript
+
+O projeto é uma demonstração acadêmica de controle web de hardware. O buzzer reproduz tons simples, e o acesso à interface depende da conectividade com o ESP32 na rede local.
+
+---
+
+## English
+
+An academic project built with Arduino and ESP32: a simple browser-controlled piano that plays notes through a piezo buzzer.
+
+The circuit was **physically assembled and tested**. The study connects a web interface to a physical device, exploring Wi-Fi communication and sound control.
+
+### How it works
+
+The ESP32 joins a Wi-Fi network and hosts a page with virtual keys. Interacting with the interface sends commands to the device, which plays the selected note on the buzzer.
+
+- Eight notes: C, D, E, F, G, A, B, and high C.
+- Mouse, touch, or keyboard controls: `A S D F G H J K`.
+- Current-note indicator and a stop button.
+- HTML, CSS, and JavaScript interface embedded in the Arduino sketch.
+
+### Hardware
+
+- ESP32 board.
+- Piezo buzzer.
+- Connecting wires.
+- A USB cable compatible with the board.
+
+```text
+Buzzer positive (+) → ESP32 GPIO 25
+Buzzer negative (-) → ESP32 GND
+```
+
+The pin can be changed through `BUZZER_PIN` in the sketch.
+
+### Setup
+
+1. Open `PianoWebESP32/PianoWebESP32.ino` in Arduino IDE with support for your ESP32 board installed.
+2. Set `ssid` and `password` to your Wi-Fi network credentials.
+3. Select the correct board and port, then upload the sketch.
+4. Open the Serial Monitor at **115200 baud**.
+5. Open the reported IP address in a browser on the same network.
+6. Play using the virtual keys or `A S D F G H J K`.
+
+The `WiFi.h` and `WebServer.h` libraries are included in Arduino's ESP32 support. Keep your network credentials out of published versions of the code.
+
+### Technologies and limitations
+
+ESP32 · Arduino/C++ · Wi-Fi · HTML · CSS · JavaScript
+
+This project is an academic demonstration of web-controlled hardware. The buzzer produces simple tones, and accessing the interface requires connectivity to the ESP32 on the local network.
